@@ -1,0 +1,27 @@
+<header class="site-header container mx-auto">
+    {{- if not .IsHome }}
+    <div class="home-link">
+        <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        <span>»</span>
+    </div>
+    <div class="site-links">
+        <ul>
+		    {{- range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{- end }}
+        </ul>
+    </div>
+    {{- else }}
+    <div class="site-title m-3 p-4 pl-0 text-center">
+        {{- with .Site.Params.logo }}
+        <a class="site-logo" href="{{ .Site.BaseURL }}">
+            <img src="{{ . }}" alt="{{ .Title }}" />
+        </a>
+        {{- else }}
+        <h1 class="site-title">
+            <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+        </h1>
+        {{- end }}
+    </div>
+    {{- end }}
+</header>

@@ -1,0 +1,25 @@
+{{- define "main" }}
+<div class="container mx-auto bg-white shadow-post-container border border-hashtag-ddd mb-8">
+    <div class="archive-container container p-10 text-font-text-base">
+        <header class="archive-header">
+            <h1 class="mb-8">文章列表</h1>
+        </header>
+        {{- range .Site.RegularPages.GroupByDate "2006" -}}
+            {{- if (where .Pages "Section" "posts") -}}
+        <div class="mb-8">
+            <h2>{{ .Key }}</h2>
+            <hr>
+            <ul>
+                {{- range ((where .Pages "Section" "posts")) -}}
+                <li>
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <span>{{ .PublishDate.Format "01-02" }} </span>
+                </li>
+                {{- end -}}
+            </ul>
+        </div>
+            {{- end -}}
+        {{- end -}}
+    </div>
+</div>
+{{- end }}

@@ -1,0 +1,24 @@
+{{- define "main" }}
+<div class="container mx-auto bg-white shadow-post-container border border-hashtag-ddd mb-8">
+    <div class="archive-container container p-10 text-font-text-base">
+        <header class="archive-header">
+            {{- if isset .Data "Term" }}
+            <h1 class="mb-8">标签："{{ .Data.Term }}"</h1>
+            {{ else }}
+            <h1 class="page-title">全部文章</h1>
+            {{ end }}
+        </header>
+        <div class="mb-8">
+            <ul>
+            {{- range .Data.Pages -}}
+                {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}
+                <li>
+                    <a href="{{ .RelPermalink }}">{{.Title}}</a>
+                </li>
+                {{- end -}}
+            {{- end -}}
+            </ul>
+        </div>
+    </div>
+</div>
+{{- end }}

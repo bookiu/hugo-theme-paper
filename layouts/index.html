@@ -1,0 +1,22 @@
+{{- define "main" }}
+<div class="page-index-container container">
+    <div class="latest-posts flex justify-center gap-8 items-start text-center mb-8 max-md:block">
+        {{- $pag := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) 3 }}
+        {{- range $pag.Pages }}
+        <a href="{{ .Permalink }}" itemprop="url" class="max-w-[80vw] w-3/5 max-h-full min-h-[160px] shadow hover:shadow-lg transition bg-white p-6 rounded-sm overflow-hidden border-hashtag-ddad block relative max-md:w-11/12 max-md:max-w-full max-md:mx-auto max-md:mb-5">
+            <h2 class="post-stub-title text-xl" itemprop="name">{{ .Title }}</h2>
+            <time class="post-stub-date text-sm text-font-comment absolute bottom-6 right-6" datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ dateFormat (default "Mon, Jan 2, 2006" .Site.Params.dateFormat) .Date }}
+            </time>
+            <!-- <div>{{ .Summary }}</div> -->
+            {{- with .Params.featured }}
+                <span class="post-stub-tag">Featured</span>
+            {{- end }}
+        </a>
+        {{- end }}
+    </div>
+    <div class="latest-posts-more text-center">
+        <a href="/posts.html" class="btn p-2 px-4 border-2 border-font-base rounded-sm text-sm hover:bg-font-base hover:text-white hover:border-b-2">更多文章</a>
+    </div>
+</div>
+{{- end }}

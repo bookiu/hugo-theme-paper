@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "shell",
+            "label": "hugo:serve",
+            "command": "cd ../../;hugo serve -D",
+            "group": "none",
+            "problemMatcher": [],
+        },
+        {
+            "type": "npm",
+            "script": "watch",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm:watch",
+            "detail": "npm run watch"
+        }
+    ]
+}

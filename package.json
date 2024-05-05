@@ -1,0 +1,21 @@
+{
+  "name": "paper",
+  "version": "1.0.0",
+  "description": "An extremely simple hugo theme",
+  "repository": "https://github.com/bookiu/hugo-theme-paper.git",
+  "author": "yaxin <yaxin.me@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx postcss ./app.scss -o ./static/assets/app.css",
+    "watch": "npx postcss ./app.scss -o ./static/assets/app.css --watch"
+  },
+  "keywords": [
+    "hugo",
+    "theme"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.1"
+  }
+}

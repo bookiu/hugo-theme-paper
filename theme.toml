@@ -1,0 +1,12 @@
+name = "paper"
+license = "MIT"
+licenselink = "https://github.com/bookiu/hugo-theme-paper/blob/master/LICENSE.md"
+description = "An extremely simple hugo theme"
+homepage = "https://github.com/bookiu/hugo-theme-paper"
+tags = ["blog", "technical", "personal"]
+features = ["blog", "technical", "personal"]
+min_version = "0.60"
+
+[author]
+    name = "yaxin"
+    homepage = "https://github.com/bookiu"

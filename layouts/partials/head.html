@@ -1,0 +1,44 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{- $title := .Site.Title | printf "%s - %s" .Title }}
+    {{- if .IsHome }}{{- $title = .Site.Title }}{{ end }}
+    <title>{{ $title }}</title>
+    {{- $desc := "" }}
+    {{- with .Description }}
+        {{- $desc =. }}
+    {{- else }}
+        {{- if .IsPage }}
+            {{- $desc =.Summary }}
+        {{- else }}
+            {{- with $.Site.Params.description }}
+                {{- $desc = $.Site.Params.description }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+    <meta name="description" content="{{ $desc }}">
+    {{- $kw := "" }}
+    {{- with .Keywords }}
+        {{- $kw = delimit . "," }}
+    {{- else }}
+        {{- with .Params.tags }}
+            {{- $kw = delimit . "," }}
+        {{- else }}
+            {{- with $.Site.Params.keywords }}
+                {{- $kw = delimit $.Site.Params.keywords "," }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
+    <meta name="keywords" content="{{- $kw }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $desc }}">
+    {{- if .Site.Params.opengraph }}{{- partial "opengraph.html" . }}{{ end }}
+    {{- $baseUrl := .Site.BaseURL | trim "/" }}
+    <link rel="stylesheet" href="{{ $baseUrl }}/assets/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{- if .OutputFormats.Get "RSS" }}
+    <link href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}" rel="alternate" type="application/rss+xml">
+    {{ end }}
+    {{- partial "extra-in-head.html" . }}
+</head>
